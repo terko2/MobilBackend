@@ -9,7 +9,7 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-//------------------------     film lekérdezése
+//------------------------     Autó lekérdezése
 app.get('/auto', (req, res) => {
     const mysql = require('mysql')
     const connection = mysql.createConnection({
@@ -30,6 +30,26 @@ app.get('/auto', (req, res) => {
     connection.end()
   })
 
+//------------------------     Autó lekérdezése
+app.get('/auto_evjarat', (req, res) => {
+  const mysql = require('mysql')
+  const connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'nyaralas'
+  })
+  
+  connection.connect()
+  
+  connection.query('SELECT * from auto_evjarat', (err, rows, fields) => {
+    if (err) throw err
+  
+    res.send(rows)
+  })
+  
+  connection.end()
+})
 
 
   app.listen(port, () => {
