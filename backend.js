@@ -64,6 +64,20 @@ app.get('/szalloda', (req, res) => {
   connection.end()
 })
 
+
+//------------------------Elérhetőség lekérdezése
+app.get('/elerhetoseg', (req, res) => {
+    
+  Kapcsolat()  
+  connection.query('SELECT * from elerhetoseg', (err, rows, fields) => {
+    if (err) throw err
+  
+    res.send(rows)
+  })
+  
+  connection.end()
+})
+
   app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
   })
