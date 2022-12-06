@@ -18,7 +18,7 @@ function Kapcsolat (){
 
 
 
-app.use(express.static('autokepek'))
+app.use(express.static('kepek'))
 app.use(express.json())
 
 app.get('/', (req, res) => {
@@ -40,8 +40,8 @@ app.get('/auto', (req, res) => {
 
 //------------------------     Autó_évjárat lekérdezése
 app.get('/auto_evjarat', (req, res) => {
-  Kapcsolat()
   
+  Kapcsolat()
   connection.query('SELECT * from auto_evjarat', (err, rows, fields) => {
     if (err) throw err
   
@@ -70,6 +70,20 @@ app.get('/elerhetoseg', (req, res) => {
     
   Kapcsolat()  
   connection.query('SELECT * from elerhetoseg', (err, rows, fields) => {
+    if (err) throw err
+  
+    res.send(rows)
+  })
+  
+  connection.end()
+})
+
+
+//------------------------     Látványoságok lekérdezése
+app.get('/latvanyosag', (req, res) => {
+    
+  Kapcsolat()  
+  connection.query('SELECT * from latvanyosag', (err, rows, fields) => {
     if (err) throw err
   
     res.send(rows)
