@@ -78,6 +78,8 @@ app.get('/elerhetoseg', (req, res) => {
   connection.end()
 })
 
+//----------------
+
 
 //------------------------     Látványoságok lekérdezése
 app.get('/latvanyosag', (req, res) => {
@@ -91,6 +93,21 @@ app.get('/latvanyosag', (req, res) => {
   
   connection.end()
 })
+
+app.post('/keres', (req, res) => {
+  kapcsolat()
+let parancs="select * from nyaralas where film.cim like '%"+req.body.bevitel1+"%'"
+  connection.query(parancs, (err, rows, fields) => {
+    if (err) console.log(err)
+  else
+    res.send(rows)
+  })
+ 
+  connection.end()
+})
+
+
+
 
   app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
