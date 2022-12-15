@@ -38,6 +38,18 @@ app.get('/auto', (req, res) => {
     connection.end()
   })
 
+  //------------------------     Autó akció lekérdezése
+app.get('/auto_akcio', (req, res) => {
+    
+  Kapcsolat()  
+  connection.query('SELECT * from auto where auto_akcio=1', (err, rows, fields) => {
+    if (err) throw err
+  
+    res.send(rows)
+  })
+  
+  connection.end()
+})
 //------------------------     Autó_évjárat lekérdezése
 app.get('/auto_evjarat', (req, res) => {
   
