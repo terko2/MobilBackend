@@ -50,6 +50,30 @@ app.get('/auto_akcio', (req, res) => {
   
   connection.end()
 })
+ //------------------------     Autó napi ára
+ app.get('/auto_napiar', (req, res) => {
+    
+  Kapcsolat()  
+  connection.query('SELECT * from auto where auto_napiar=1', (err, rows, fields) => {
+    if (err) throw err
+  
+    res.send(rows)
+  })
+  
+  connection.end()
+})
+//------------------------     Autó akciós ár
+app.get('/auto_akcios_ar', (req, res) => {
+    
+  Kapcsolat()  
+  connection.query('SELECT * from auto where auto_akcios_ar=1', (err, rows, fields) => {
+    if (err) throw err
+  
+    res.send(rows)
+  })
+  
+  connection.end()
+})
 //------------------------     Autó_évjárat lekérdezése
 app.get('/auto_evjarat', (req, res) => {
   
