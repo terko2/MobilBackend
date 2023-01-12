@@ -114,8 +114,6 @@ app.get('/elerhetoseg', (req, res) => {
   connection.end()
 })
 
-//----------------
-
 
 //------------------------     Látványoságok lekérdezése
 app.get('/latvanyosag', (req, res) => {
@@ -142,6 +140,22 @@ let parancs="select * from nyaralas where film.cim like '%"+req.body.bevitel1+"%
   connection.end()
 })
 
+//---------------- Kölcsönzés
+app.post('/felvitel', (req, res) => {
+
+  connection.query("INSERT INTO kolcsonzes VALUES (NULL, '"+req.body.bevitel1+"', '"+req.body.bevitel2+"' , '"+req.body.bevitel3+"' , '"+req.body.bevitel4+"', '"+req.body.bevitel5+"', '"+req.body.bevitel6+"' )", function (err, rows, fields) {
+    if (err) 
+      console.log( err)
+    else{
+    console.log("Sikeres kölcsönzés !")
+    res.send("Sikeres kölcsönzés !")}
+    
+  })
+  
+  connection.end()
+
+  
+  })
 
 
 
