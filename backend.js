@@ -128,6 +128,7 @@ app.get('/latvanyosag', (req, res) => {
   connection.end()
 })
 
+//-----Keres
 app.post('/keres', (req, res) => {
   kapcsolat()
 let parancs="select * from nyaralas where film.cim like '%"+req.body.bevitel1+"%'"
@@ -140,22 +141,21 @@ let parancs="select * from nyaralas where film.cim like '%"+req.body.bevitel1+"%
   connection.end()
 })
 
-//---------------- Kölcsönzés
-app.post('/felvitel', (req, res) => {
 
-  connection.query("INSERT INTO kolcsonzes VALUES (NULL, '"+req.body.bevitel1+"', '"+req.body.bevitel2+"' , '"+req.body.bevitel3+"' , '"+req.body.bevitel4+"', '"+req.body.bevitel5+"', '"+req.body.bevitel6+"' )", function (err, rows, fields) {
-    if (err) 
-      console.log( err)
-    else{
-    console.log("Sikeres kölcsönzés !")
-    res.send("Sikeres kölcsönzés !")}
+
+
+  //------------------------   Kölcsönzési nap
+app.get('/kolcsonzes', (req, res) => {
     
+  Kapcsolat()  
+  connection.query('SELECT * from kolcsonzes ', (err, rows, fields) => {
+    if (err) throw err
+  
+    res.send(rows)
   })
   
   connection.end()
-
-  
-  })
+})
 
 
 
