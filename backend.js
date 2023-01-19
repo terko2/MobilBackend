@@ -20,6 +20,8 @@ function Kapcsolat (){
 
 app.use(express.static('kepek'))
 app.use(express.json())
+$datepick = $_POST['date'];
+// wich is 04/12/2014
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
@@ -148,7 +150,7 @@ let parancs="select * from nyaralas where film.cim like '%"+req.body.bevitel1+"%
 app.get('/kolcsonzes', (req, res) => {
     
   Kapcsolat()  
-  connection.query('SELECT * from kolcsonzes ', (err, rows, fields) => {
+  connection.query('SELECT * FROM kolcsonzes inner JOIN auto ON auto.auto_id=kolcsonzes.auto_id', (err, rows, fields) => {
     if (err) throw err
   
     res.send(rows)
