@@ -3,7 +3,6 @@ const mysql = require('mysql')
 const app = express()
 const port = 3000
 var connection 
-
 function Kapcsolat (){
   connection  = mysql.createConnection({
     host: 'localhost',
@@ -13,20 +12,11 @@ function Kapcsolat (){
   })
   connection.connect()
 }
-
-
-
-
-
 app.use(express.static('kepek'))
 app.use(express.json())
-$datepick = $_POST['date'];
-// wich is 04/12/2014
-
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
-
 //------------------------     Autó lekérdezése
 app.get('/auto', (req, res) => {
     
@@ -39,7 +29,6 @@ app.get('/auto', (req, res) => {
     
     connection.end()
   })
-
   //------------------------     Autó akció lekérdezése
 app.get('/auto_akcio', (req, res) => {
     
@@ -88,7 +77,6 @@ app.get('/auto_evjarat', (req, res) => {
   
   connection.end()
 })
-
 //------------------------     Szalloda lekérdezése
 app.get('/szalloda', (req, res) => {
     
@@ -101,8 +89,6 @@ app.get('/szalloda', (req, res) => {
   
   connection.end()
 })
-
-
 //------------------------Elérhetőség lekérdezése
 app.get('/elerhetoseg', (req, res) => {
     
@@ -115,8 +101,6 @@ app.get('/elerhetoseg', (req, res) => {
   
   connection.end()
 })
-
-
 //------------------------     Látványoságok lekérdezése
 app.get('/latvanyosag', (req, res) => {
     
@@ -129,7 +113,6 @@ app.get('/latvanyosag', (req, res) => {
   
   connection.end()
 })
-
 //-----Keres
 app.post('/keres', (req, res) => {
   kapcsolat()
@@ -142,10 +125,6 @@ let parancs="select * from nyaralas where film.cim like '%"+req.body.bevitel1+"%
  
   connection.end()
 })
-
-
-
-
   //------------------------   Kölcsönzési nap
 app.get('/kolcsonzes', (req, res) => {
     
@@ -160,7 +139,6 @@ app.get('/kolcsonzes', (req, res) => {
 })
 
 
-
-  app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
-  })
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`)
+})
