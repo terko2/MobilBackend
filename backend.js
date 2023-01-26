@@ -139,6 +139,20 @@ app.get('/kolcsonzes', (req, res) => {
 })
 
 
+
+app.get('/auto_adatok', (req, res) => {
+    
+  Kapcsolat()  
+  connection.query('SELECT * from auto_adatok', (err, rows, fields) => {
+    if (err) throw err
+  
+    res.send(rows)
+  })
+  
+  connection.end()
+})
+
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
