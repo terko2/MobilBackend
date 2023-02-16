@@ -125,7 +125,7 @@ let parancs="select * from nyaralas where film.cim like '%"+req.body.bevitel1+"%
  
   connection.end()
 })
-  //------------------------   Kölcsönzési nap
+  //------------------------Kölcsönzési nap
 app.get('/kolcsonzes', (req, res) => {
     
   Kapcsolat()  
